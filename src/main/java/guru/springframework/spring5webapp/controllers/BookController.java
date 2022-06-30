@@ -9,21 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by Gk5
  * Date: 2022-06-30
  */
-
 @Controller
 public class BookController {
 
     private final BookRepository bookRepository;
 
+    public BookController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
     @RequestMapping("/books")
-    public String getBooks(Model model) {
+    public String getBooks(Model model){
 
         model.addAttribute("books", bookRepository.findAll());
 
-        return "books";
-    }
-
-    public BookController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+        return "books/list";
     }
 }
